@@ -1,0 +1,6 @@
+A = [{"id": 1, "worst_value": 25, "worst_gap": 1},
+	{"id": 2, "worst_value": 30, "worst_gap": 50},
+    {"id": 3, "worst_value": 35, "worst_gap": 40},
+    {"id": 4, "worst_value": 40, "worst_gap": 60},
+    {"id": 5, "worst_value": 15, "worst_gap": 3}
+    ]
