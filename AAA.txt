@@ -4,3 +4,18 @@ A = [{"id": 1, "worst_value": 25, "worst_gap": 1},
     {"id": 4, "worst_value": 40, "worst_gap": 60},
     {"id": 5, "worst_value": 15, "worst_gap": 3}
     ]
+
+def get_top_n_min_items(data, n):
+    # Sort the list of dictionaries based on the "worst_gap" key
+    sorted_list = sorted(data, key=lambda x: x["worst_gap"])
+
+    # Filter out items with the same "worst_gap" value
+    filtered_list = [sorted_list[0]]
+    for item in sorted_list[1:]:
+        if item["worst_gap"] != filtered_list[-1]["worst_gap"]:
+            filtered_list.append(item)
+
+    # Get the top N minimum items
+    top_n_min_items = filtered_list[:n]
+
+    return top_n_min_items
