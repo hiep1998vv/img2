@@ -1,22 +1,60 @@
-A = [{"id": 1, "worst_value": 25, "worst_gap": 1},
-	{"id": 2, "worst_value": 30, "worst_gap": 50},
-    {"id": 3, "worst_value": 35, "worst_gap": 40},
-    {"id": 4, "worst_value": 40, "worst_gap": 60},
-    {"id": 5, "worst_value": 15, "worst_gap": 3}
-    ]
+#include "DHT.h"
+#define DHTPIN 2
+#define DHTTYPE DHT11
 
-def get_top_n_min_items(data, n):
-    # Sort the list of dictionaries based on the "worst_gap" key
-    sorted_list = sorted(data, key=lambda x: x["worst_gap"])
+DHT dht(DHTPIN, DHTTYPE);
 
-    # Filter out items with the same "worst_gap" value
-    filtered_list = [sorted_list[0]]
-    for item in sorted_list[1:]:
-        if item["worst_gap"] != filtered_list[-1]["worst_gap"]:
-            filtered_list.append(item)
+// khai bao cho cam bien chat luog kk
 
-    # Get the top N minimum items
-    top_n_min_items = filtered_list[:n]
+#include <LiquidCrystal.h>
+int sensorValue;
+const int rs = 12, en   = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-    return top_n_min_items
-https://file.io/5CDrfBHS76Mh
+void setup() {
+  Serial.begin(9600);
+  dht.begin(); // initialize the sensor
+//  lcd.begin(16, 2);
+}
+
+void loop() {
+  // loop cho cam bien nhiet do, do am
+  // wait a few seconds between measurements.
+  delay(2000);
+
+  // read humidity
+  float humi  = dht.readHumidity();
+  // read temperature as Celsius
+  float tempC = dht.readTemperature();
+  // read temperature as Fahrenheit
+  float tempF = dht.readTemperature(true);
+
+  // check if any reads failed
+  if (isnan(humi) || isnan(tempC) || isnan(tempF)) {
+    Serial.println("Failed to read from DHT sensor!");
+  } else {
+    Serial.print("Humidity: ");
+    Serial.print(humi);
+    Serial.print("%");
+
+    Serial.print("  |  "); 
+
+    Serial.print("Temperature: ");
+    Serial.print(tempC);
+    Serial.print("°C ~ ");
+    Serial.print(tempF);
+    Serial.println("°F");
+  }
+
+  // cam bien chat luong kk
+  sensorValue = analogRead(0);       //   read analog input pin 0
+  Serial.print("AirQua=");
+  Serial.print(sensorValue, DEC);               // prints the value read
+  Serial.println(" PPM");
+  lcd.setCursor(0,0);
+  lcd.print("ArQ=");
+  lcd.print(sensorValue,DEC);
+  lcd.print("   PPM");
+  lcd.println("       "); 
+  lcd.print("  ");
+}
