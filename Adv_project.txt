@@ -1,0 +1,102 @@
+#include <ArduinoHttpClient.h>
+
+#include "DHT.h"
+#define DHTPIN 2
+#define DHTTYPE DHT11
+
+#include <SPI.h>
+#include <Ethernet.h>
+#include <ArduinoJson.h>
+#include <Client.h>
+#include <assert.h>
+#include <SoftwareSerial.h>
+#include <DMD2.h>
+#include <fonts/Arial_Black_16.h>
+#include <fonts/SystemFont5x7.h>
+#include <fonts/Arial14.h>
+//#include <DS3231.h>
+//
+//// Init the DS3231 using the hardware interface
+//DS3231  rtc(SDA, SCL);  
+
+SoftDMD dmd(2,1);  // DMD controls the entire display   -test
+
+DHT dht(DHTPIN, DHTTYPE);
+
+// khai bao cho cam bien chat luog kk
+
+#include <LiquidCrystal.h>
+int sensorValue;
+//const int rs = 12, en   = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+//LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+void setup() {
+  
+    delay(3000);
+    dmd.clearScreen();  
+//    pinMode(2, INPUT);
+    dmd.setBrightness(230); 
+    dmd.selectFont(SystemFont5x7);  
+    Serial.begin(9600);
+    
+    dmd.begin();   
+    dht.begin(); // initialize the sensor
+}
+
+
+void loop() {
+
+      // loop cho cam bien nhiet do, do am
+      // wait a few seconds between measurements.
+      delay(2000);
+    
+      // read humidity
+      float humi  = dht.readHumidity();
+      String humi_string = String(humi);
+      // read temperature as Celsius
+      float tempC = dht.readTemperature();
+      String tempC_string = String(tempC);
+      // read temperature as Fahrenheit
+      float tempF = dht.readTemperature(true);
+    
+      // check if any reads failed
+      if (isnan(humi) || isnan(tempC) || isnan(tempF)) {
+        Serial.println("Failed to read from DHT sensor!");
+      } else {
+        Serial.print("Humidity: ");
+        Serial.print(humi);
+        Serial.print("%");
+    
+        Serial.print("  |  "); 
+    
+        Serial.print("Temperature: ");
+        Serial.print(tempC);
+        Serial.print("°C ~ ");
+        Serial.print(tempF);
+        Serial.println("°F");
+      }
+    
+      // cam bien chat luong kk
+      sensorValue = analogRead(0);       //   read analog input pin 0
+      String sensorValue_string = String(sensorValue);
+      Serial.print("AirQua=");
+      Serial.print(sensorValue, DEC);               // prints the value read
+      Serial.println(" PPM");
+//      
+//             dmd.drawFilledBox(0,0,64,16);  //=> Clear background
+    
+             dmd.drawString(32,0,"A",GRAPHICS_OFF);  //=>  Cell name
+             String a = "1440";
+             String b = "440";
+             String c = "1000";
+             dmd.drawString(64-a.length()*6,8,a,GRAPHICS_OFF);  //=>  Plan
+             dmd.drawString(32-b.length()*6,0,b, GRAPHICS_OFF); //=>  Actual
+             dmd.drawString(32-c.length()*6,8, c, GRAPHICS_OFF); //=>  Progress
+             
+//             dmd.drawString(64-humi_string.length()*6,8,humi_string,GRAPHICS_OFF);  //=>  Plan
+//      
+//             dmd.drawString(32-tempC_string.length()*6,0,tempC_string, GRAPHICS_OFF); //=>  Actual
+//    
+//             dmd.drawString(32-sensorValue_string.length()*6,8, sensorValue_string, GRAPHICS_OFF); //=>  Progress
+            Serial.println("pass here!");
+}
