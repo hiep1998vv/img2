@@ -58,3 +58,62 @@ void loop() {
   lcd.println("       "); 
   lcd.print("  ");
 }
+
+Macca cồ 220k/1kg
+Macca 1 190k
+Nhân nguyên vip 560k
+Nhân macca vỡ 380k
+Óc đỏ vỏ 110k
+Nhân óc đỏ 250k
+Nhân óc vàng 180k
+Hạnh nhân lõi Úc  sống 210k/1kg
+Hạnh nhân lõi Úc sấy 220k/1kg
+Chà là vàng rời 80k/1kg
+Chà là mật 120k/1kg
+Chà là cành 230k
+Cacao nguyên chất 160k/1kg
+Cà phê đăklak 190k 
+Ngũ cốc bột dinh dưỡng 18 loại hạt 170k/1kg
+Bột cốc dinh dưỡng Không đậu nành 180k
+Bột Ngũ cốc Cao cấp 220k/1kg 
+Ngũ cốc Granola vị truyền thống 180k/1kg
+Ngũ cốc granola nhiều hạt ( Yến Mạch 10%) 230k/1kg
+Ngũ cốc nguyên hạt ( không Yến Mạch ) 240k
+Chia đen 120k/1kg
+Yến mạch Úc tươi 90k
+Hạnh nhân rang bơ 190k/1kg
+Dẻ cười hũ dài 310k
+Dẻ cười hũ tròn 260k
+Điều cồ xếp rang muối 180k/ 1kg
+Điều cồ sấy nguyên vị 220k
+Điều rang muối túi zip 210k
+Nho Chile 3 màu 120k/1kg
+Nho vàng 80k
+Bánh thuyền 270k
+Bánh kẹp rb 270k
+Thanh gạo lứt chà bông 190k
+Bánh đồng tiền mix hạt 160k
+Gạo lứt sấy rong biển 80k/1kg
+Mít Thái A 200k
+Thập cẩm sấy 120k
+Xoài  A 150k
+Xoài B 120k
+Mứt dâu nguyên quả sấy dẻo 270k
+Mứt Táo Thái 75k
+Me tắc cay 90k
+Me đường 90k
+Me lào 90k
+Mứt dâu viên 60k
+Khô gà 160k
+Bánh dừa nướng giòn 90k
+Kẹo dừa cofe muối 120k
+Khoai lang tím cọng sấy 170k
+Khoai lang vàng cọng sấy 170k
+Khoai môn cọng sấy 180k
+Chuối sứ sấy 80k
+Bí rang vỏ 110k/1kg 
+Hướng dương nguyên vị 70k/1kg
+Hướng dương vị dừa 90k/1kg 
+Hạt dưa 150k/1kg
+Mứt dừa non 90k
+Mứt gừng 110k
